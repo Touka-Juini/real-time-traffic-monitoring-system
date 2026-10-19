@@ -13,20 +13,22 @@ This project uses two ESP32-based sensor nodes to detect passing vehicles and tr
 
 ## System Architecture
 
+```mermaid
 flowchart TD
-    A["Node 1<br/>ESP32 · VL53L0X · HC-SR04"]
-    B["Node 2<br/>ESP32 · VL53L0X"]
+    A["Node 1: ESP32, VL53L0X, HC-SR04"]
+    B["Node 2: ESP32, VL53L0X"]
     C["Wi-Fi Network"]
     D["MQTT Broker"]
-    E["Laptop Dashboard<br/>Python · Tkinter · Paho MQTT"]
+    E["Laptop Dashboard: Python, Tkinter, Paho MQTT"]
 
     A --> C
     B --> C
     C --> D
     D --> E
 
-    D -.-> F["Flask Backend<br/>Partial Implementation"]
+    D -.-> F["Flask Backend (Partial Implementation)"]
     F -.-> G[("SQLite Database")]
+```
 
 The ESP32 nodes collect distance measurements and transmit vehicle-detection messages over MQTT. The Python desktop dashboard provides a monitoring interface. Flask-based backend and web dashboard components were also explored, but remain partially implemented.
 
