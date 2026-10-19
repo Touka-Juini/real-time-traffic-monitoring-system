@@ -9,7 +9,7 @@ This project uses two ESP32-based sensor nodes to detect passing vehicles and tr
 ## Project Resources
 
 - **Project Report:** [View the report](docs/RAPPORT.pdf)
-- **Prototype Demo:** [Watch the demonstration]([ADD_DEMO_LINK_HERE](https://youtu.be/V3mk6v1Oa1w))
+- **Prototype Demo:** [Watch the demonstration](https://youtu.be/V3mk6v1Oa1w)
 
 ## System Architecture
 
