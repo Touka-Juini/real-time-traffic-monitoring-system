@@ -1,94 +1,71 @@
 # Real-Time Traffic Monitoring System
 
-An embedded IoT project for vehicle detection and road traffic monitoring, developed as a final-year project at **ISAMM**, Licence en Sciences de l’Informatique — Micro-Informatique et Machines Embarquées (MIME).
+An embedded IoT project for vehicle detection and road traffic monitoring, developed as a final-year project at the **Institut Supérieur des Arts Multimédias de la Manouba (ISAMM)**.
 
 ## Overview
 
-The system uses two ESP32-based sensor nodes to detect passing vehicles and transmit detection data over Wi-Fi using MQTT. The project also includes a Python desktop dashboard prototype and an SQLite database schema for managing traffic records.
+This project uses two ESP32-based sensor nodes to detect passing vehicles and transmit detection data over Wi-Fi using MQTT. It combines embedded programming, distance sensing, and desktop monitoring, with additional work on traffic data storage and web-based visualization.
 
-The prototype explores vehicle counting, distance measurement, estimated vehicle speed and classification, with an emphasis on embedded sensing and IoT communication.
+## Project Resources
+
+- **Project Report:** [View the report](ADD_REPORT_LINK_HERE)
+- **Prototype Demo:** [Watch the demonstration](ADD_DEMO_LINK_HERE)
 
 ## System Architecture
 
 ```mermaid
 flowchart TD
-    A["Node 1<br/>ESP32 + VL53L0X + HC-SR04"]
-    B["Node 2<br/>ESP32 + VL53L0X"]
-
+    A["Node 1<br/>ESP32 · VL53L0X · HC-SR04"]
+    B["Node 2<br/>ESP32 · VL53L0X"]
     C["Wi-Fi Network"]
     D["MQTT Broker"]
-    E["Python / Tkinter Dashboard"]
-    F["Flask Backend"]
-    G[("SQLite Database")]
-    H["Web Dashboard"]
+    E["Python Desktop Dashboard<br/>Tkinter · Paho MQTT"]
 
     A --> C
     B --> C
     C --> D
     D --> E
-    D -. "If implemented and connected" .-> F
-    F --> G
-    F --> H
+
+    D -.-> F["Flask Backend<br/>Partial Implementation"]
+    F -.-> G[("SQLite Database")]
+    F -.-> H["Web Dashboard<br/>Partial Implementation"]
 ```
 
-*Note: The diagram represents the reported system design. The connection between the MQTT broker, Flask backend, database, and web dashboard must be confirmed against the final source code.*
+The ESP32 nodes collect distance measurements and transmit vehicle-detection messages over MQTT. The Python desktop dashboard provides a monitoring interface. Flask-based backend and web dashboard components were also explored, but remain partially implemented.
 
 ## Hardware
 
-- ESP32 microcontrollers — two sensor nodes
-- VL53L0X time-of-flight distance sensors
-- HC-SR04 ultrasonic sensor on Node 1
-- Solar panel and rechargeable battery components for power experiments
+- **ESP32 × 2** — embedded sensor nodes
+- **VL53L0X** — time-of-flight distance sensor on both nodes
+- **HC-SR04** — ultrasonic sensor on Node 1
+- **Solar panel and rechargeable batteries** — explored for outdoor power autonomy
 
-## Technologies
+## Technology Stack
 
-| Area | Technologies |
+| Component | Technologies |
 |---|---|
-| Embedded development | C/C++, Arduino IDE |
+| Embedded firmware | C/C++, Arduino IDE |
 | Distance sensing | VL53L0X, HC-SR04 |
 | Communication | Wi-Fi, MQTT |
-| Desktop interface | Python, Tkinter, Paho MQTT |
+| Desktop monitoring | Python, Tkinter, Paho MQTT |
 | Data storage | SQLite |
-| Backend and web interface | Flask, HTML, CSS, JavaScript — subject to implementation verification |
+| Backend and web interface | Flask, HTML, CSS, JavaScript — partial implementation |
 
-## Repository Structure
+## Key Features
 
-```text
-real-time-traffic-monitoring/
-├── firmware/
-│   ├── node1/
-│   └── node2/
-├── dashboard/
-├── database/
-│   └── schema.sql
-├── media/
-│   ├── prototype/
-│   ├── sensors/
-│   └── dashboard/
-├── docs/
-└── README.md
-```
-
-The folders should reflect the files actually included in the repository.
-
-## Main Components
-
-- **Sensor nodes:** Read distance measurements and implement vehicle-detection logic.
-- **MQTT communication:** Provides a messaging mechanism for transmitting sensor data.
-- **Desktop dashboard:** A Python interface designed to display vehicle counts and distance readings received over MQTT.
-- **Database schema:** Defines tables for routes, sensor nodes, vehicle detections and historical records.
+- Distance-based vehicle detection using two ESP32 sensor nodes
+- MQTT messaging over Wi-Fi
+- Vehicle-count and distance monitoring through a Python desktop dashboard
+- Database schema for routes, sensor nodes, vehicle detections, and historical records
+- Exploration of traffic statistics and web-based visualization
 
 ## Project Status
 
-This repository documents the available firmware, dashboard code, database schema and hardware prototype. MQTT topic and message-format consistency, vehicle speed estimation, and end-to-end integration should be validated against the final versions before all features are considered fully operational.
-
-## Documentation and Media
-
-The `docs/` directory can contain the project report and presentation. The `media/` directory can contain original prototype photographs, sensor setups and screenshots of the available interfaces.
+The integrated prototype was demonstrated working. The Flask backend and web dashboard remain partially implemented. Detection accuracy, estimated vehicle speed, and vehicle classification depend on sensor configuration and calibration.
 
 ## Academic Context
 
-**Institution:** Institut Supérieur des Arts Multimédias de la Manouba (ISAMM)  
-**Degree:** Licence en Sciences de l’Informatique  
-**Specialization:** Micro-Informatique et Machines Embarquées (MIME)  
-**Project:** Système de Surveillance du Trafic en Temps Réel
+- **Institution:** Institut Supérieur des Arts Multimédias de la Manouba (ISAMM)
+- **Degree:** Licence en Sciences de l’Informatique
+- **Specialization:** Micro-Informatique et Machines Embarquées (MIME)
+- **Project title:** *Système de Surveillance du Trafic en Temps Réel*
